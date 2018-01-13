@@ -1,0 +1,24 @@
+<!--index.wxml-->
+<view class="container">
+
+  <!-- 获取图片 -->
+  <view class="obtain-img-container">
+    <view class="obtain-img-button" bindtap="chooseImage">
+      <text class="obtain-img-button-text">获取银行卡图片</text>
+    </view>
+    <view class="img-container" wx:if="{{imgUrl}}">
+      <image class="image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
+    </view>
+  </view>
+
+  <!-- 银行卡信息 -->
+  <view class="bank-number-container" wx:if="{{bankInfo}}">
+    <text class="bank-number-text">{{bankInfo.bank_name}}</text>
+    <text class="bank-number-text">{{bankInfo.bank_card_number}}</text>
+  </view>
+
+  <!-- 复制 -->
+  <view class='copy-container' wx:if="{{bankInfo}}">
+    <button type='primary' bindtap="copyNumber">复制卡号</button>
+  </view>
+</view>
