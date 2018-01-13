@@ -6,8 +6,8 @@
     <view class="obtain-img-button" bindtap="chooseImage">
       <text class="obtain-img-button-text">获取银行卡图片</text>
     </view>
-    <view class="img-container" wx:if="{{imgUrl}}">
-      <image class="image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
+    <view class="img-container" wx:if="{{imgFile.path}}">
+      <image class="image" src="{{imgFile.path}}" mode="aspectFit" bindtap="previewImg"></image>
     </view>
   </view>
 
