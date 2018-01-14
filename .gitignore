@@ -1,3 +1,4 @@
+.idea
 # Logs
 logs
 *.log
@@ -41,5 +42,7 @@ typings/
 .vscode
 # ignore sh
 sh/
+
+server/cache_dir
 # ignore test sdk.config.json
 sdk.config.json
