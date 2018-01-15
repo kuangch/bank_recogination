@@ -24,14 +24,7 @@ Page({
           if (res.size > 1024 * 1024 * 3) {
             util.showModel('错误', '图片需要小于 3M')
           } else {
-            imgHelper.toBase64(imgFile, function (img) {
-              if(img == -1){
-                util.showModel('错误', '编码失败')
-              }else{
-                that.ocrOption(img);
-              }
-            })
-
+            that.ocrOption(imgFile.path);
           }
         }
       })
@@ -42,19 +35,20 @@ Page({
         util.showBusy("OCR识别中...")
         var that = this
         var ret = ocr.getBankNumber({
-          imgBase64:img,
+          imgPath:img,
           success: function(result){
+            wx.hideLoading();
             if (result){
               that.setData({
                 bankInfo: result
               })
-              util.showSuccess('识别成功');
             }else{
               util.showModel('提示', '未识别到银行卡信息')
             }
             
           },
           fail: function(){
+            wx.hideLoading();
             util.showModel('提示', '识别失败')
           }
         })
@@ -64,7 +58,7 @@ Page({
     copyNumber: function(){
       var that = this
       wx.setClipboardData({
-        data: that.data.bankInfo && that.data.bankInfo.bank_card_number ? that.data.bankInfo.bank_card_number : '',
+        data: (that.data.bankInfo && that.data.bankInfo.bank_card_number ? that.data.bankInfo.bank_card_number : '').replace(/ /g,''),
         success: function (res) {
           wx.getClipboardData({
             success: function (res) {
@@ -84,8 +78,8 @@ Page({
     // 预览图片
     previewImg: function () {
         wx.previewImage({
-            current: this.data.imgUrl,
-            urls: [this.data.imgUrl]
+          current: this.data.imgFile.path,
+          urls: [this.data.imgFile.path]
         })
     }
 

@@ -62,7 +62,7 @@ var initOcr = function(aplication){
 var getBankNumber = function (options) {
 
   options = {
-    imgBase64: options.imgBase64 ? options.imgBase64 : "",
+    imgPath: options.imgPath ? options.imgPath : "",
     success: options.success ? options.success : function () { },
     fail: options.fail ? options.fail : function () { },
     complete: options.complete
@@ -70,19 +70,25 @@ var getBankNumber = function (options) {
 
   __getBaiduToken({
     success:function(token){
-      wx.request({
-        url: 'https://aip.baidubce.com/rest/2.0/ocr/v1/bankcard?access_token=' + app.baiduOcrToken,
-        method: 'POST',
-        header: {
-          'content-type': 'application/x-www-form-urlencoded'
-        },
+      wx.uploadFile({
+        url: app.ip + '/weapp/bank_search',
+        filePath: options.imgPath,
+        name: 'image',
         dataType: 'json',
-        data: {
-          image: options.imgBase64
+        formData: {
+          baidu_ocr_token: token
         },
         success(result) {
           console.log('获取银行卡号码成功')
-          options.success(result.data.result)
+          
+          try{
+            let r = JSON.parse(result.data)
+            options.success(r.data.result)
+          }catch(e){
+            console.log(e)
+            options.fail()
+          }
+          
         },
         fail(error) {
           console.log('request fail', error);

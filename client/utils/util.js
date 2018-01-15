@@ -14,22 +14,24 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
-
 // 加载
-var showBusy = text => wx.showToast({
+var showBusy = text => wx.showLoading({
     title: text,
-    icon: 'loading'
+    mask: true
 })
 
 // 显示成功提示
-var showSuccess = text => wx.showToast({
+var showSuccess = (text, duration) => {
+
+  wx.showToast({
     title: text,
-    icon: 'success'
-})
+    icon: 'success',
+    duration: duration || 1500
+  })
+} 
 
 // 显示失败提示
 var showModel = (title, content) => {
-    wx.hideToast();
 
     wx.showModal({
         title,
