@@ -16,7 +16,7 @@ var __getBaiduToken = function (options) {
     if (tokenCache){
       // 单位： s
       var tokenTime = (new Date().getTime() - tokenCache.inTime)/1000
-      // 提前token国企一小时前更新token防止临界点
+      // 提前token过期一小时前更新token防止临界点
       if (tokenTime > tokenCache.expires_in - 3600){
         tokenCache = null
       }

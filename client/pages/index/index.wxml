@@ -1,24 +1,28 @@
 <!--index.wxml-->
 <view class="container">
 
+  <view animation="{{animObtainImgStart}}" class="obtain-img-start" hover-class='obtain-img-start-hover' bindtap="chooseImage" wx:if="{{!imgFile.path}}">选择图片</view>
+
   <!-- 获取图片 -->
-  <view class="obtain-img-container">
+  <view animation="{{animObtainImg}}" style="opacity:{{animScope.obtainImgInit ? 0 : 1 }}" class="obtain-img-container" wx:if="{{imgFile.path}}">
     <view class="obtain-img-button" bindtap="chooseImage">
       <text class="obtain-img-button-text">获取银行卡图片</text>
     </view>
-    <view class="img-container" wx:if="{{imgFile.path}}">
+    <view class="img-container">
       <image class="image" src="{{imgFile.path}}" mode="aspectFit" bindtap="previewImg"></image>
     </view>
   </view>
 
   <!-- 银行卡信息 -->
-  <view class="bank-number-container" wx:if="{{bankInfo}}">
-    <text class="bank-number-text">{{bankInfo.bank_name}}</text>
+  <view animation="{{animBankInfo}}" style="opacity:{{animScope.bankInfoInit ? 0 : 1 }}; transform:translateX({{animScope.bankInfoInit ? -600 : 0 }}px)" class="bank-number-container" wx:if="{{bankInfo}}">
+    <text class="bank-name-text">{{bankInfo.bank_name}}</text>
+    <text class="bank-type-text">{{bankInfo.bank_card_type ? (bankInfo.bank_card_type == 1 ? "借记卡" : "信用卡"): "未知类别"}}</text>
+    <image class="bank-yl-icon" src="./ic_bank_yl.png" mode="aspectFit"></image>
     <text class="bank-number-text">{{bankInfo.bank_card_number}}</text>
   </view>
 
   <!-- 复制 -->
-  <view class='copy-container' wx:if="{{bankInfo}}">
-    <button type='primary' bindtap="copyNumber">复制卡号</button>
+  <view animation="{{animCopy}}" style="opacity:{{animScope.copyInit ? 0 : 1 }};{{animScope.copyInit ? 'transform:translateX(500px)' : 'transform:translateX(0px)' }}" class='copy-container' wx:if="{{bankInfo}}">
+    <view hover-class='copy-button-hover' class='copy-button' bindtap="copyNumber">复制卡号</view>
   </view>
 </view>

@@ -1,23 +1,52 @@
 /**index.wxss**/
 
 page {
-  background: #f6f6f6;
+  background: #10d2af;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
+/*===============================================
+  
+  初次选择图片显示按钮
+
+ ===============================================*/
+.obtain-img-start{
+  position: absolute;
+  margin-top: 400rpx;
+  width: 250rpx;
+  height: 250rpx;
+  font-size: 35rpx;
+  line-height: 250rpx;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #00000060;
+  color: white;
+}
+
+.obtain-img-start-hover{
+  background-color: #00000080;
+}
+
+/*===============================================
+  
+  选择银行卡按钮
+
+ ===============================================*/
+
 .obtain-img-container {
+  border-radius: 20rpx;
+  width: 620rpx;
   margin-top: 40rpx;
   height: auto;
-  width: 100%;
-  background: #fff;
+  /* width: 100%; */
+  background: #ffffff80;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-left: none;
   border-right: none;
-  transition: all 300ms ease;
+  transition: all 800ms ease;
   box-sizing: border-box;
-  
 }
 
 .obtain-img-button {
@@ -31,8 +60,15 @@ page {
   width: auto;
   line-height: 52px;
   font-size: 34rpx;
-  color: #007aff;
+  /* color: #007aff; */
+  color: #0060FF;
 }
+
+/*===============================================
+  
+  银行卡照片
+
+ ===============================================*/
 
 .img-container {
   width: 100%;
@@ -45,11 +81,96 @@ page {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.image{
+.image {
   width: 100%;
   height: auto;
 }
 
-.bank-number-container{
-  background: red
+/*===============================================
+  
+  银行卡信息
+
+ ===============================================*/
+
+.bank-number-container {
+  position: relative;
+  color: white;
+  margin-top: 30rpx;
+  border-radius: 20rpx;
+  width: 620rpx;
+  height: 320rpx;
+  background: #ef6356;
+  /* box-shadow: 8rpx 10rpx 10rpx #666; */
+}
+
+.bank-name-text {
+  margin-left: 40rpx;
+  margin-top: 20rpx;
+  display: block;
+  font-size: 45rpx;
+}
+
+.bank-type-text {
+  display: inline-block;
+  padding: 3rpx 6rpx 3rpx 6rpx;
+  height: 50rpx;
+  border-radius: 15rpx;
+  border: 1px solid #6cc;
+  margin-left: 40rpx;
+  margin-top: 20rpx;
+  color: #ccf;
+  text-align: center;
+  font-size: 32rpx;
+  line-height: 50rpx;
+  box-sizing: content-box;
+}
+
+.bank-yl-icon {
+  position: absolute;
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+  right: 0;
+  bottom: 0;
+  margin-right: 40rpx;
+  margin-bottom: 80rpx;
+}
+
+.bank-number-text {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-right: 20rpx;
+  margin-bottom: 30rpx;
+  text-align: right;
+  display: block;
+  font-size: 48rpx;
+}
+
+/*===============================================
+  
+  卡号复制按钮
+
+ ===============================================*/
+
+.copy-container {
+  width: auto;
+  margin-top: 60rpx;
+}
+
+.copy-button {
+  box-shadow: 0rpx 0rpx 15rpx #666;
+  border-radius: 20rpx;
+  width: 620rpx;
+  height: 150rpx;
+  font-size: 45rpx;
+  color: white;
+  background: #0099CC;
+  line-height: 150rpx;
+  text-align: center;
+}
+
+.copy-button-hover {
+  box-shadow: 0rpx 0rpx;
+  background: #0088bb;
 }

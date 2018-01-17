@@ -9,8 +9,100 @@ var app
 
 Page({
 
+  data:{
+    // bankInfo:{
+    //   bank_card_number:"6217857600036486692",
+    //   bank_name:"招商银行",
+    //   bank_card_type:1
+    // },
+    // imgFile: {
+    //   path: './yhk.jpg'
+    // },
+    animScope: {
+      obtainImgInit: true,
+      bankInfoInit: true,
+      copyInit: true
+    }
+  },
+
+  initAnim:function(){
+    var that = this;
+    that.setData({
+      animScope: {
+        obtainImgInit: true,
+        bankInfoInit: true,
+        copyInit: true
+      }
+    })
+
+  },
+
   onLoad: function (res) {
     app = getApp()
+  },
+
+  animObtainImgStart:function(){
+    // 初始选择照片按钮动画
+    var animObtainImgStart = wx.createAnimation({
+      timingFunction: 'ease',
+    })
+    animObtainImgStart.scale(0.8, 0.8).step({ duration: 300, delay: 200 })
+    animObtainImgStart.scale(1.2, 1.2).step({ duration: 200 })
+    animObtainImgStart.scale(1, 1).step({ duration: 300 })
+    this.setData({
+      animObtainImgStart: animObtainImgStart.export()
+    })
+  },
+
+  animObtainImg: function(){
+    // 获取照片动画
+    var animObtainImg = wx.createAnimation({
+      timingFunction: 'ease',
+    })
+    animObtainImg.opacity(1).step({ duration: 2000 })
+    this.setData({
+      animObtainImg: animObtainImg.export()
+    })
+  },
+
+  animBankInfo: function () {
+    // 银行卡片动画
+    var animBankInfo = wx.createAnimation({
+      timingFunction: 'ease',
+    })
+    animBankInfo.opacity(1).translateX(0).step({ duration: 400 })
+    this.setData({
+      animBankInfo: animBankInfo.export()
+    })
+  },
+
+  animCopy: function (reserve) {
+    // 复制按钮动画
+    var animCopy = wx.createAnimation({
+      timingFunction: 'ease',
+    })
+    animCopy.opacity(reserve ? 0 : 1).translateX(reserve ? 1 : 0).step({ duration: 500 })
+    this.setData({
+      animCopy: animCopy.export()
+    })
+  },
+
+  onShow: function(){
+
+    this.initAnim()
+
+    this.animObtainImgStart()
+
+  },
+  
+  anim4result: function () {
+
+    this.animObtainImg()
+
+    this.animBankInfo()
+
+    this.animCopy();
+
   },
 
   onShareAppMessage: function (res) {
@@ -31,6 +123,7 @@ Page({
 
   chooseImage: function () {
     var that = this
+    that.initAnim()
     wx.chooseImage({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -42,6 +135,8 @@ Page({
           imgFile: imgFile,
           bankInfo: false
         })
+
+        that.animObtainImg()
 
         console.log(imgFile.size / 1024 + 'kb')
         if (res.size > 1024 * 1024 * 3) {
@@ -65,6 +160,7 @@ Page({
           that.setData({
             bankInfo: result
           })
+          that.anim4result()
         } else {
           util.showModel('提示', '未识别到银行卡信息')
         }
