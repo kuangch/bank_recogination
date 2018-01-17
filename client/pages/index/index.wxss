@@ -9,29 +9,63 @@ page {
 
 /*===============================================
   
+  初始显示页面
+
+ ===============================================*/
+.splash-view{
+  padding-top: 200rpx;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.desc_item{
+  margin-bottom: 25rpx;
+  height: 50rpx;
+  width: 500rpx;
+  line-height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.desc_item_icon{
+  border: 1px solid #fff;
+  border-radius: 50%;
+  display: inline-block;
+  width: 12rpx;
+  height: 12rpx;
+  background: white;
+  
+}
+.desc_item_desc{
+  display: inline-block;
+  font-size: 35rpx;
+  color: white;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+}
+
+
+/*===============================================
+  
   初次选择图片显示按钮
 
  ===============================================*/
-.obtain-img-start{
-  position: absolute;
-  margin-top: 400rpx;
+
+.obtain-img-start {
+  margin-top: 80rpx;
   width: 250rpx;
   height: 250rpx;
-  font-size: 35rpx;
-  line-height: 250rpx;
-  text-align: center;
   border-radius: 50%;
-  background-color: #00000060;
-  color: white;
-}
-
-.obtain-img-start-hover{
-  background-color: #00000080;
+  border: 1px solid #fff ;
+  box-shadow: 0rpx 0rpx 20rpx #333;
 }
 
 /*===============================================
   
-  选择银行卡按钮
+  选择银行卡区块
 
  ===============================================*/
 
@@ -61,7 +95,7 @@ page {
   line-height: 52px;
   font-size: 34rpx;
   /* color: #007aff; */
-  color: #0060FF;
+  color: #0060ff;
 }
 
 /*===============================================
@@ -73,7 +107,7 @@ page {
 .img-container {
   width: 100%;
   height: 400rpx;
-  padding: 20rpx 20rpx 20rpx 0;
+  padding: 20rpx 20rpx 20rpx 20rpx;
   display: flex;
   align-content: center;
   justify-content: center;
@@ -163,14 +197,28 @@ page {
   border-radius: 20rpx;
   width: 620rpx;
   height: 150rpx;
+  background: #09c;
+  text-align: center;
+  box-sizing: content-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-button-icon {
+  display: inline-block;
+  margin-right: 20rpx;
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.copy-button-txt {
+  display: inline-block;
   font-size: 45rpx;
   color: white;
-  background: #0099CC;
-  line-height: 150rpx;
-  text-align: center;
 }
 
 .copy-button-hover {
   box-shadow: 0rpx 0rpx;
-  background: #0088bb;
+  background: #08b;
 }

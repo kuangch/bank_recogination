@@ -1,0 +1,7 @@
+<template name="desc_item">
+  <view class='desc_item'>
+    <view wx:if="{{title?true:false}}" class='desc_item_icon'></view>
+    <text class='desc_item_desc' style="color:{{title?'white':'#6666'}}"> {{desc}} </text>
+    <view wx:if="{{title?true:false}}" class='desc_item_icon'></view>
+  </view>
+</template>
