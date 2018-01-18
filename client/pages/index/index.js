@@ -2,7 +2,7 @@
 var qcloud = require('../../vendor/wafer2-client-sdk/index')
 var config = require('../../config')
 var util = require('../../utils/util.js')
-var ocr = require('../../utils/ocr.js')
+var ocr = require('../../utils/ocr_baidu_sdk.js')
 var imgHelper = require('../../utils/img_helper.js')
 
 var app

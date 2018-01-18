@@ -1,11 +1,12 @@
 //app.js
 var config = require('./config')
-var ocr = require('./utils/ocr.js')
+var ocr = require('./utils/ocr_baidu_sdk.js')
 
 App({
   nikcName:undefined,
   ip:'https://aduls9yo.qcloud.la',
-  baiduOcrToken:'',
+  // ip:'http://10.0.2.177:5757',
+  // baiduOcrToken:'',
   onLaunch: function () {
     var that = this
     ocr.initOcr(that)

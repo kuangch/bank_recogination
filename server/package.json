@@ -12,6 +12,7 @@
     "license": "MIT",
     "dependencies": {
         "axios": "^0.15.3",
+        "baidu-aip-sdk": "^2.1.0",
         "busboy": "^0.2.14",
         "knex": "^0.13.0",
         "koa": "^2.0.0",
@@ -22,6 +23,7 @@
         "mkdir-p": "0.0.7",
         "mysql": "^2.14.1",
         "pify": "^2.3.0",
+        "request": "^2.83.0",
         "wafer-node-sdk": "^1.1.1"
     },
     "devDependencies": {
@@ -30,7 +32,6 @@
         "eslint": "^3.9.1",
         "eslint-config-standard": "^6.2.1",
         "eslint-plugin-promise": "^3.3.1",
-        "eslint-plugin-standard": "^2.0.1",
-        "request": "^2.83.0"
+        "eslint-plugin-standard": "^2.0.1"
     }
 }
