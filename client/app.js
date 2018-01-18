@@ -4,8 +4,7 @@ var ocr = require('./utils/ocr_baidu_sdk.js')
 
 App({
   nikcName:undefined,
-  ip:'https://aduls9yo.qcloud.la',
-  // ip:'http://10.0.2.177:5757',
+  ip: config.service.host,
   // baiduOcrToken:'',
   onLaunch: function () {
     var that = this
