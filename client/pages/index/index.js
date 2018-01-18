@@ -9,19 +9,11 @@ var app
 
 Page({
 
-  data:{
-    // bankInfo:{
-    //   bank_card_number:"6217857600036486692",
-    //   bank_name:"招商银行",
-    //   bank_card_type:1
-    // },
-    // imgFile: {
-    //   path: './yhk.jpg'
-    // },
-    DESC:[ 
+  data: {
+    DESC: [
       {
         title: true,
-        desc: '要求'
+        desc: '建议'
       },
       {
         desc: '图片小于3M'
@@ -32,10 +24,10 @@ Page({
       {
         desc: '保证清晰度'
       }
-     
+
     ],
     animScope: {
-      DESC:true,
+      DESC: true,
       obtainImgInit: true,
       bankInfoInit: true,
       copyInit: true
@@ -43,17 +35,12 @@ Page({
   },
 
   // 重置显示结果动画
-  resetResultAnim:function(){
-    this.setData({
-      animScope: {
-        bankInfoInit: true,
-        copyInit: true
-      }
-    })
+  resetResultAnim: function () {
 
     this.animBankInfo(true)
     this.animCopy(true)
-    
+    this.animDESC(true)
+    this.animObtainImgStart(true)
 
   },
 
@@ -66,35 +53,35 @@ Page({
 
   },
 
-  onLoad: function (res) {
-    app = getApp()
-  },
-
-  animDESC: function () {
+  animDESC: function (reserve) {
     // 描述动画
     var animDESC = wx.createAnimation({
       timingFunction: 'ease',
     })
-    animDESC.opacity(1).step({ duration: 2000 })
+    animDESC.opacity(reserve ? 0 : 1).step({ duration: reserve ? 500 : 1500 })
     this.setData({
       animDESC: animDESC.export()
     })
   },
 
-  animObtainImgStart:function(){
+  animObtainImgStart: function (reserve) {
     // 初始选择照片按钮动画
     var animObtainImgStart = wx.createAnimation({
       timingFunction: 'ease',
     })
-    animObtainImgStart.scale(0.8, 0.8).step({ duration: 300, delay: 200 })
-    animObtainImgStart.scale(1.2, 1.2).step({ duration: 200 })
-    animObtainImgStart.scale(1, 1).step({ duration: 300 })
+    if (reserve) {
+      animObtainImgStart.opacity(0).scale(0.2, 0.2).step({ duration: 500 })
+    } else {
+      animObtainImgStart.opacity(0.8).scale(0.8, 0.8).step({ duration: 300, delay: 200 })
+      animObtainImgStart.opacity(1).scale(1.2, 1.2).step({ duration: 200 })
+      animObtainImgStart.scale(1, 1).step({ duration: 300 })
+    }
     this.setData({
       animObtainImgStart: animObtainImgStart.export()
     })
   },
 
-  animObtainImg: function (reserve){
+  animObtainImg: function (reserve) {
     // 获取照片动画
     var animObtainImg = wx.createAnimation({
       timingFunction: 'ease',
@@ -127,15 +114,17 @@ Page({
     })
   },
 
-  onShow: function(){
+  onLoad: function (res) {
+    app = getApp()
+  },
+
+  onShow: function () {
 
     // 初始描述文字动画
     this.animDESC()
 
-    // 初始按钮动画
+    // 初始选择图片按钮动画
     this.animObtainImgStart()
-
-    this.resetResultAnim()
 
   },
 
@@ -155,6 +144,7 @@ Page({
 
   },
 
+  isFirst : true,
   chooseImage: function () {
     var that = this
     wx.chooseImage({
@@ -162,7 +152,9 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-
+        that.setData({
+          splashShow: false,
+        })
         // 重置动画
         that.resetResultAnim()
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
@@ -173,7 +165,9 @@ Page({
         })
 
         // 显示获取银行卡照片模块
-        that.animObtainImg()
+        if (that.isFirst){
+          that.animObtainImg()
+        }  
 
         console.log(imgFile.size / 1024 + 'kb')
         if (res.size > 1024 * 1024 * 3) {

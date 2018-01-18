@@ -34,8 +34,8 @@ page {
   border: 1px solid #fff;
   border-radius: 50%;
   display: inline-block;
-  width: 12rpx;
-  height: 12rpx;
+  width: 10rpx;
+  height: 10rpx;
   background: white;
   
 }
@@ -193,7 +193,7 @@ page {
 }
 
 .copy-button {
-  box-shadow: 0rpx 0rpx 15rpx #666;
+  box-shadow: 0rpx 0rpx 20rpx #333;
   border-radius: 20rpx;
   width: 620rpx;
   height: 150rpx;
